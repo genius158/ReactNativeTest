@@ -4,11 +4,15 @@ import {
     Text,
     View,
     Picker,
+    StyleSheet,
     Navigator,
     DrawerLayoutAndroid,
     TouchableHighlight,
 } from 'react-native';
 import SearchView from './search-view';
+
+import Swiper from 'react-native-swiper';
+
 
 export default class Detail extends Component {
   constructor(props) {
@@ -43,12 +47,10 @@ setPickerValue= v=>{
 
 
  render(){
-
    var navigationView=(
      <View style={{flex:1,backgroundColor:'red'}}>
       <Text>asdfasffsdfsdfasdfaf</Text>
      </View>
-
    )
 
    return(
@@ -58,8 +60,8 @@ setPickerValue= v=>{
       renderNavigationView={()=>navigationView}
      >
      <View>
-         <TouchableHighlight onPress={this._onPressButton.bind(this)}>
-        <Text>dsfsdfsdf{ this.state.titleText }</Text>
+         <TouchableHighlight underlayColor= 'red' onPress={this._onPressButton.bind(this)}>
+        <Text>dsfsdfsdsdfdfdfsdfsdfsdff{ this.state.titleText }</Text>
         </TouchableHighlight>
         <View>
           <SearchView/>
@@ -70,12 +72,62 @@ setPickerValue= v=>{
           style={{color:'#f00'}}
           onValueChange={this.setPickerValue}
         >
-        <Picker.Item label="Java1" value="java1"/>
-        <Picker.Item label="Java2" value="Java2"/>
-        <Picker.Item label="Java3" value="java3"/>
+          <Picker.Item label="Java1" value="java1"/>
+          <Picker.Item label="Java2" value="Java2"/>
+          <Picker.Item label={"Java3"} value="java3"/>
         </Picker>
+
+
+        <Swiper
+          autoplay={true}
+          autoplayTimeout={2.5}
+          style={styles.wrapper}
+          showsButtons={false}
+
+          >
+
+          <View style={styles.slide1}>
+            <Text style={styles.text}>Hello Swiper</Text>
+          </View>
+          <View style={styles.slide2}>
+            <Text style={styles.text}>Beautiful</Text>
+          </View>
+          <View style={styles.slide3}>
+            <Text style={styles.text}>And simple</Text>
+          </View>
+        </Swiper>
+
+
      </View>
      </DrawerLayoutAndroid>
    );
  }
 }
+
+var styles = StyleSheet.create({
+  wrapper: {
+  },
+  slide1: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#9DD6EB',
+  },
+  slide2: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#97CAE5',
+  },
+  slide3: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#92BBD9',
+  },
+  text: {
+    color: '#fff',
+    fontSize: 30,
+    fontWeight: 'bold',
+  }
+})
