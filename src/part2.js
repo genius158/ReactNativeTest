@@ -11,8 +11,9 @@ import {
   DatePickerAndroid,
   TouchableHighlight,
 } from 'react-native';
+import BackComponent from './base-back-component';
 
-export default class Part2 extends Component{
+export default class Part2 extends BackComponent{
 
   save(){
     AsyncStorage.setItem('one','one data',err=>{
@@ -37,10 +38,7 @@ export default class Part2 extends Component{
 
 
   componentWillMount(){
-    if (Platform.OS=== 'android') {
-      BackAndroid.addEventListener('hardwareBackPress',this.onAndrondBack);
-    }
-
+    super.componentWillMount();
     DatePickerAndroid.open({date:new Date()}).then(
       result=>{
         if (result.action=== DatePickerAndroid.dismissAction) {
@@ -50,22 +48,6 @@ export default class Part2 extends Component{
         }
       }
     )
-  }
-
-  onAndrondBack=()=>{
-    const{navigator}=this.props;
-    const routers=navigator.getCurrentRoutes();
-    if (routers.length>1) {
-      navigator.pop();
-      return true;
-    }
-    return false;
-  }
-
-  componentWillUnmount(){
-    if (Platform.OS=== 'android') {
-      BackAndroid.removeEventListener('hardwareBackPress',this.onAndrondBack)
-    }
   }
 
   componentDidMount(){

@@ -9,12 +9,12 @@ import {
     DrawerLayoutAndroid,
     TouchableHighlight,
 } from 'react-native';
-import SearchView from './search-view';
-
 import Swiper from 'react-native-swiper';
 
+import SearchView from './search-view';
+import BackComponent from './base-back-component';
 
-export default class Detail extends Component {
+export default class Detail extends BackComponent {
   constructor(props) {
     super(props);
     this.state={
@@ -83,7 +83,6 @@ setPickerValue= v=>{
           autoplayTimeout={2.5}
           style={styles.wrapper}
           showsButtons={false}
-
           >
 
           <View style={styles.slide1}>

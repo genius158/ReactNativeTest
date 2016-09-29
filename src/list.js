@@ -1,15 +1,16 @@
 
 import React, { Component } from 'react';
 import {
-    Text,
-    ScrollView,
-    Navigator,
-    TouchableHighlight,
+  Text,
+  ScrollView,
+  Navigator,
+  TouchableHighlight,
 } from 'react-native';
 
 
 import Detail from './detail' ;
 import Part2 from './part2';
+import Part3 from './part3';
 
 export default class List extends Component {
   constructor(props) {
@@ -25,11 +26,11 @@ export default class List extends Component {
     };
   }
 
-getNextPageDate = nextPage =>{
-  this.setState({
-    nextPageDate:nextPage
-  })
-}
+  getNextPageDate = nextPage =>{
+    this.setState({
+      nextPageDate:nextPage
+    })
+  }
 
   _onPressButton(){
     const{navigator}=this.props;
@@ -38,10 +39,10 @@ getNextPageDate = nextPage =>{
         name:'Detail',
         component:Detail,
         params: {
-           titleText:this.state.titleText,
-           getNextPageDate:this.getNextPageDate,
-           //getNextPageDate:this.state.getNextPageDate,
-         },
+          titleText:this.state.titleText,
+          getNextPageDate:this.getNextPageDate,
+          //getNextPageDate:this.state.getNextPageDate,
+        },
       });
     }
   }
@@ -52,6 +53,17 @@ getNextPageDate = nextPage =>{
       navigator.push({
         name:'Part2',
         component:Part2,
+
+      });
+    }
+  }
+
+  toPart3=()=>{
+    const{navigator}=this.props;
+    if (navigator) {
+      navigator.push({
+        name:'Part3',
+        component:Part3,
 
       });
     }
@@ -69,13 +81,16 @@ getNextPageDate = nextPage =>{
 
     return(
       <ScrollView>
-        <Text onPress={this._onPressButton.bind(this)}>text11</Text>
-        <Text onPress={this._onPressButton.bind(this)}>text22{this.state.nextPageDate}</Text>
-        <Text onPress={this._onPressButton.bind(this)}>text33</Text>
-        {list}
-        <TouchableHighlight style={{backgroundColor:'red'}} onPress={this.toPart2}>
-          <Text>part2</Text>
-        </TouchableHighlight>
+      <Text onPress={this._onPressButton.bind(this)}>text11</Text>
+      <Text onPress={this._onPressButton.bind(this)}>text22{this.state.nextPageDate}</Text>
+      <Text onPress={this._onPressButton.bind(this)}>text33</Text>
+      {list}
+      <TouchableHighlight style={{backgroundColor:'red'}} onPress={this.toPart2}>
+      <Text>part2</Text>
+      </TouchableHighlight>
+      <TouchableHighlight style={{backgroundColor:'green'}} onPress={this.toPart3}>
+      <Text>part3</Text>
+      </TouchableHighlight>
       </ScrollView>
     );
   }
