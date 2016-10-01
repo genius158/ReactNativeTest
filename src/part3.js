@@ -15,7 +15,13 @@ export default class Part3 extends BackComponent{
     this.getPostNet();
   }
 
-  postRequest(url,formData,callback){
+  postRequest(url,data,callback){
+	let formData = new FormData();
+   
+	for(var key in data){
+		 formData.append(key,data[key]);
+	};
+
     let datemap={
       method:'POST',
       headers: {
@@ -36,12 +42,12 @@ export default class Part3 extends BackComponent{
   }
 
   getPostNet(){
-    let formData = new FormData();
-    formData.append("userId","372280");
+    //let formData = new FormData();
+    //formData.append("userId","372280");
 
     this.postRequest(
       'http://121.196.209.49:8080/Business/serviceInterface/getHealthManagerDetailInfo.json',
-      formData,
+      {'userId':'372280'},
       resoult=>alert(resoult)
     )
   }
